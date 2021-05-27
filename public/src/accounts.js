@@ -18,7 +18,6 @@ const getBooksPossessedByAccount = (account, books, authors) => {
 
   foundBooks.forEach((book) => book.author = authors.find((author) => author.id === book.authorId));
 
-   console.log(foundBooks);
    return foundBooks;
 
 }

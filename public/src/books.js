@@ -16,7 +16,6 @@ const partitionBooksByBorrowedStatus = (books) => {
   results.push(borrowed);
   results.push(returned);
 
-  console.log(results);
   return results;
 }
 
