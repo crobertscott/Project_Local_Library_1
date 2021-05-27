@@ -69,10 +69,7 @@ function getMostPopularAuthors(books, authors) {
   const author = authors.find((author) => authorId === author.id)
   let name = `${author.name.first} ${author.name.last}`
   borrowList.push({name, count: book.borrows.length})
-
-
   }
-
 
   borrowList.sort((borrowA, borrowB) => borrowA.count < borrowB.count ? 1 : -1);
 
