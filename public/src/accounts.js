@@ -9,8 +9,15 @@ const sortAccountsByLastName = (accounts) => {
 }
 
 const getTotalNumberOfBorrows = (account, books) => {  
+
   const borrowedBooks = books.find((book) => book.borrows.filter((borrow) => borrow.id === account.id));
-  return borrowedBooks.borrows.length;
+  
+  let borrowsList = borrowedBooks.borrows;
+  let totalBorrows = borrowsList.reduce((acc, borrow, index) => {
+    acc = 1;
+    return acc + index;
+  });
+  return totalBorrows;
 }
 
 const getBooksPossessedByAccount = (account, books, authors) => {
@@ -21,8 +28,6 @@ const getBooksPossessedByAccount = (account, books, authors) => {
    return foundBooks;
 
 }
-
-
 
 module.exports = {
   findAccountById,

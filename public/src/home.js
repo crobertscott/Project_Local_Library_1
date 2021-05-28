@@ -16,6 +16,8 @@ function getMostCommonGenres(books) {
   let genreCount = {};
   let genreList = [];
 
+  const topGenres = (array) => {return array.slice(0, 5);}
+
   for (let book of books) {
     const genre = book.genre;
     if (genre in genreCount) {genreCount[genre] += 1} else {genreCount[genre] = 1}
@@ -23,12 +25,13 @@ function getMostCommonGenres(books) {
   
   for (let genre in genreCount) {
     genreList.push({name : genre, count : genreCount[genre]});
-  }
-
+  } 
+    
   genreList.sort((genreA, genreB) => genreA.count < genreB.count ? 1 : -1);
 
-  const topGenres = genreList.slice(0, 5);
-  return topGenres;
+  let result = topGenres(genreList);
+  return result; 
+  
 }
 
 function getMostPopularBooks(books) { 
@@ -53,22 +56,14 @@ function getMostPopularBooks(books) {
 
 function getMostPopularAuthors(books, authors) {
 
-// I need to find the number of borrows for each author. I need to create an array, with an object for each author and the count of total borrows each author has. 
-// Once I have the number of borrows for each author, I need to cross-reference the authorId for each book with the first and last name of the author associated
-// with the authorId. 
-
   let borrowList = [];
 
   for (let book of books) {
     const authorId = Number(book.authorId);
   
-   // loop through all books, authors have multiple books
-
-  // cross-reference "authors" array to convert authorId into author names
-
-  const author = authors.find((author) => authorId === author.id)
-  let name = `${author.name.first} ${author.name.last}`
-  borrowList.push({name, count: book.borrows.length})
+    const author = authors.find((author) => authorId === author.id)
+    let name = `${author.name.first} ${author.name.last}`
+    borrowList.push({name, count: book.borrows.length})
   }
 
   borrowList.sort((borrowA, borrowB) => borrowA.count < borrowB.count ? 1 : -1);
